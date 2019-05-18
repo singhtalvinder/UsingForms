@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from './user';
+import { CampEnrollmentService } from './camp-enrollment.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,10 @@ import { User } from './user';
 })
 export class AppComponent {
   title = 'templateDrivenforms';
+
+  constructor(private _campEnrollmentService: CampEnrollmentService) {
+  }
+
 
   // topic validated.
   topicHasError = true;
@@ -23,5 +28,15 @@ export class AppComponent {
     } else {
       this.topicHasError = false;
     }
+  }
+
+  onSubmit() {
+    console.log(this.userModel);
+    this._campEnrollmentService.enroll(this.userModel)
+    .subscribe(
+      data => console.log('Successfully submitted the user info.'),
+      error =>  console.log('Failed to submit the user info.')
+      )
+
   }
 }

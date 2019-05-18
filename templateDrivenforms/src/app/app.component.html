@@ -2,12 +2,18 @@
 
 <div class="container-fluid">
   <h1>Summer Camp Enrollment Form.</h1>
-  <form #userForm="ngForm">
+  <form #userForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+    <!-- novalidate will prevent browser validation when
+      submit button is clicked.
+      Bind to ngSubmit event for the submit click.
+    -->
+    <!--
     {{userForm.value | json}}
     <hr />
     {{userModel | json}}
     <hr />
     {{userForm.form.valid}} 
+    -->
     <!--:for above check -Caution:Doesnot work with default and self validated
      select box. So, add that error check also.
      -->
@@ -16,6 +22,7 @@
       So, use [()] - for 2-way data binding so that whenever the data changes, it's 
       correctly reflected.
     -->
+    
 
     <div class="form-group">
       <label>Name</label>
