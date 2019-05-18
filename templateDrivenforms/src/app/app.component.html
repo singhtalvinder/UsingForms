@@ -1,0 +1,79 @@
+<!--<button class="btn btn-primary">Submit</button>-->
+
+<div class="container-fluid">
+  <h1>Summer Camp Enrollment Form.</h1>
+  <form #userForm="ngForm">
+    {{userForm.value | json}}
+    <hr />
+    {{userModel | json}}
+    <!-- [] => bind properties of the userModel to the ngModel directive, 
+      ie only 1-way data binding. Means data flows from the class to the view and not back.
+      So, use [()] - for 2-way data binding so that whenever the data changes, it's 
+      correctly reflected.
+    -->
+
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" class="form-control" name="userName" [(ngModel)]= "userModel.name">
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" class="form-control" name="email" [(ngModel)]="userModel.email">
+    </div>
+
+    <div class="form-group">
+      <label>Phone</label>
+      <input type="tel" class="form-control" name="phone" [(ngModel)]="userModel.phone">
+    </div>
+
+    <div class="form-group">
+      <select class="custom-select" name="topic" [(ngModel)]="userModel.topic">
+        <option value="">I'm interested in :</option>
+        <option *ngFor="let topic of topics">{{topic}}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Time Preference:</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="timePreference" value="morning" [(ngModel)]="userModel.timePreference">
+          <label class="form-check-label">Morning(9:00 AM - 12:30 PM)</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="timePreference" value="evening" [(ngModel)]="userModel.timePreference">
+            <label class="form-check-label">Evening(6:00 PM - 9:30 PM)</label>
+         </div>
+    </div>
+    <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" name="subscribe" [(ngModel)]="userModel.subscribe">
+        <label class="form-check-label">Send me promotional offers.</label>
+    </div>
+   
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+</div>
+
+<router-outlet></router-outlet>
+
+<!--
+    Address as a group
+   <div ngModelGroup="address">
+      <div class="form-group">
+        <label>Street</label>
+        <input type="text" class="form-control" ngModel name="street">
+      </div>
+      <div class="form-group">
+          <label>City</label>
+          <input type="text" class="form-control" ngModel name="city">
+      </div>
+      <div class="form-group">
+          <label>State</label>
+          <input type="text" class="form-control" ngModel name="state">
+      </div>
+      <div class="form-group">
+          <label>Postal Code</label>
+          <input type="text" class="form-control" ngModel name="postalcode">
+      </div>
+    </div>
+-->
