@@ -10,6 +10,7 @@ import { CampEnrollmentService } from './camp-enrollment.service';
 export class AppComponent {
   title = 'templateDrivenforms';
 
+  submitted= false;
   constructor(private _campEnrollmentService: CampEnrollmentService) {
   }
 
@@ -31,6 +32,7 @@ export class AppComponent {
   }
 
   onSubmit() {
+    this.submitted = true;
     console.log(this.userModel);
     this._campEnrollmentService.enroll(this.userModel)
     .subscribe(

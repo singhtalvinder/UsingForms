@@ -8,7 +8,7 @@ import { User } from './user';
 })
 export class CampEnrollmentService {
 
-  _url = ''; // Your endpoint where you need to store the submitted data.
+  _url = 'http://localhost:3000/enroll'; // Your endpoint where you need to store the submitted data.
 
   constructor(private _http: HttpClient) { }
 

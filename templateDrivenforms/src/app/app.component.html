@@ -2,7 +2,7 @@
 
 <div class="container-fluid">
   <h1>Summer Camp Enrollment Form.</h1>
-  <form #userForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+  <form #userForm="ngForm" *ngIf="!submitted" novalidate (ngSubmit)="onSubmit()">
     <!-- novalidate will prevent browser validation when
       submit button is clicked.
       Bind to ngSubmit event for the submit click.
@@ -22,7 +22,7 @@
       So, use [()] - for 2-way data binding so that whenever the data changes, it's 
       correctly reflected.
     -->
-    
+
 
     <div class="form-group">
       <label>Name</label>
