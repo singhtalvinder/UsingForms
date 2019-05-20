@@ -18,6 +18,8 @@ app.get('/', function (req, res) {
 
 app.post('/enroll', function(req, res){
     console.log(req.body);
+    // test error message
+    //res.status(401).send({message: 'Enrollment data received.'});
 
 })
 app.listen(PORT, function() {

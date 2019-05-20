@@ -2,6 +2,9 @@
 
 <div class="container-fluid">
   <h1>Summer Camp Enrollment Form.</h1>
+  <div class = "alert alert-danger" *ngIf="errorMsg">
+    {{errorMsg}}
+  </div>
   <form #userForm="ngForm" *ngIf="!submitted" novalidate (ngSubmit)="onSubmit()">
     <!-- novalidate will prevent browser validation when
       submit button is clicked.

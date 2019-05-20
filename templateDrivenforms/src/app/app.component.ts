@@ -10,6 +10,7 @@ import { CampEnrollmentService } from './camp-enrollment.service';
 export class AppComponent {
   title = 'templateDrivenforms';
 
+  errorMsg = '';
   submitted= false;
   constructor(private _campEnrollmentService: CampEnrollmentService) {
   }
@@ -37,7 +38,7 @@ export class AppComponent {
     this._campEnrollmentService.enroll(this.userModel)
     .subscribe(
       data => console.log('Successfully submitted the user info.'),
-      error =>  console.log('Failed to submit the user info.')
+      error =>  this.errorMsg = error.statusText
       )
 
   }
