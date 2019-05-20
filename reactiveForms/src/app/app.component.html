@@ -4,7 +4,34 @@
       {{registrationForm.value | json }}
     <div class="form-group">
       <label>Username</label>
-      <input formControlName = "userName" type="text" class="form-control">
+      <input [class.is-invalid]="userName.invalid && userName.touched"
+       formControlName = "userName" 
+       type="text" 
+       class="form-control">
+       <!-- <small class="text-danger"
+        [class.d-none]="userName.</small> -->
+          <div *ngIf="userName.invalid && userName.touched" class="text-danger">
+            <small *ngIf="userName.errors?.required" 
+              class= "text-danger">Username is required.
+            </small>
+            <small *ngIf="userName.errors?.minlength"
+              class="text-danger">Username must be 5 characters long.
+            </small>
+            <small *ngIf="userName.errors?.forbiddenName"
+            class="text-danger">Username must not contain {{userName.errors?.forbiddenName.value}}.
+          </small>
+          </div>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input [class.is-invalid] = "email.invalid && email.touched" 
+        type="text" formControlName="email" class="form-control">
+      <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required.</small>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" formControlName="subscribe" type="checkbox">
+      <label class="form-check-label">Subscribe for Promotional offers.
+      </label>
     </div>
     <div class="form-group">
       <label>Password</label>
@@ -12,24 +39,28 @@
     </div>
     <div class="form-group">
       <label>Confirm password</label>
-      <input formControlName = "confirmPassword"  type="password" class="form-control">
+      <input [class.is-invalid]="registrationForm.errors?.misMatch" 
+        formControlName = "confirmPassword"  
+        type="password" 
+        class="form-control">
+        <small class="text-danger" *ngIf="registrationForm.errors?.misMatch">Password must match.</small>
     </div>
-    <div formGroupName="address">
-        <div class="form-group">
+    <div formGroupName = "address">
+        <div class = "form-group">
             <label>City</label>
-            <input formControlName = "city"  type="text" class="form-control">
+            <input formControlName = "city"  type = "text" class = "form-control">
         </div>
         <div class="form-group">
             <label>State</label>
-            <input formControlName = "state"  type="text" class="form-control">
+            <input formControlName = "state"  type = "text" class = "form-control">
           </div>
         <div class="form-group">
             <label>Postal Code</label>
-            <input formControlName = "postalCode"  type="text" class="form-control">
+            <input formControlName = "postalCode"  type = "text" class = "form-control">
         </div>
     </div>
-    <button class="btn btn-primary" type="submit"> Register</button>
-    <button (click) = "loadApiData()" class="btn btn-secondary ml-2">Load API data</button>
+    <button class = "btn btn-primary" type = "submit"> Register</button>
+    <button (click) = "loadApiData()" class = "btn btn-secondary ml-2">Load API data</button>
   </form>
 </div>
 <router-outlet></router-outlet>
